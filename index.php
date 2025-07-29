@@ -785,7 +785,7 @@
                     <circle cx="130" cy="90" r="6" fill="currentColor"/>
                     <circle cx="160" cy="110" r="6" fill="currentColor"/>
                 </svg>
-                ZORQENT TECHNOLOGIES
+                ZORQENT
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
