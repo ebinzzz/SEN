@@ -1,0 +1,15 @@
+{
+    "name": "ebinb/sen",
+    "autoload": {
+        "psr-4": {
+            "Ebinb\\Sen\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ebinskryfon",
+            "email": "ebinbenny@skryfon.com"
+        }
+    ],
+    "require": {}
+}
