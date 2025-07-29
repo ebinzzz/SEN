@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEN Technologies - Software Development Company</title>
+    <title>ZORQENT Technologies - Software Development Company</title>
     <style>
         * {
             margin: 0;
@@ -785,7 +785,7 @@
                     <circle cx="130" cy="90" r="6" fill="currentColor"/>
                     <circle cx="160" cy="110" r="6" fill="currentColor"/>
                 </svg>
-                SEN TECHNOLOGIES
+                ZORQENT TECHNOLOGIES
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -811,7 +811,7 @@
     </section>
 
     <section id="about" class="section fade-in">
-        <h2>About SEN Technologies</h2>
+        <h2>About ZORQENT Technologies</h2>
         <div class="about-content">
             <div class="about-text">
                 <p>We are a leading software development company specializing in creating innovative, scalable, and user-friendly solutions for businesses of all sizes. With years of experience in the industry, our team of expert developers and designers work tirelessly to transform your ideas into powerful digital solutions.</p>
@@ -876,7 +876,7 @@
 
     <section id="features" class="features">
         <div class="section fade-in">
-            <h2>Why Choose SEN Technologies?</h2>
+            <h2>Why Choose ZORQENT Technologies?</h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">⚡</div>
@@ -945,7 +945,7 @@
                     <div class="contact-icon">✉️</div>
                     <div>
                         <h4>Email</h4>
-                        <p>info@sentechnologies.com</p>
+                        <p>info@ZORQENTtechnologies.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -962,7 +962,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>SEN Technologies</h3>
+                <h3>ZORQENT Technologies</h3>
                 <p>Leading software development company creating innovative solutions for modern businesses. We transform ideas into powerful digital experiences.</p>
                 <div class="social-links">
                     <a href="#" title="Facebook">f</a>
@@ -991,12 +991,12 @@
                 <h3>Contact Info</h3>
                 <p>📍 123 Tech Street, Innovation District</p>
                 <p>📞 +1 (555) 123-4567</p>
-                <p>✉️ info@sentechnologies.com</p>
-                <p>🌐 www.sentechnologies.com</p>
+                <p>✉️ info@ZORQENTtechnologies.com</p>
+                <p>🌐 www.ZORQENTtechnologies.com</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 SEN Technologies. All rights reserved. Designed with ❤️ for innovation.</p>
+            <p>&copy; 2025 ZORQENT Technologies. All rights reserved. Designed with ❤️ for innovation.</p>
         </div>
     </footer>
 
