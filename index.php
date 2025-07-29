@@ -28,6 +28,7 @@
             position: fixed;
             width: 100%;
             top: 0;
+            height:12%;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
@@ -41,6 +42,7 @@
             padding: 1rem 5%;
             max-width: 1200px;
             margin: 0 auto;
+            margin-top:-32px;
         }
 
         .logo {
@@ -59,8 +61,8 @@
         }
 
         .logo-img {
-            width: 50px;
-            height: 50px;
+            width: 120px;
+            height: 120px;
             filter: brightness(0) invert(1);
         }
 
@@ -805,15 +807,15 @@
             </div>
             <div class="about-stats">
                 <div class="stat-item">
-                    <div class="stat-number">100+</div>
+                    <div class="stat-number">10+</div>
                     <div>Projects Completed</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">10+</div>
                     <div>Happy Clients</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">5+</div>
+                    <div class="stat-number">3+</div>
                     <div>Years Experience</div>
                 </div>
                 <div class="stat-item">
@@ -853,10 +855,11 @@
                 <p>Scalable cloud-based applications and services that grow with your business, ensuring reliability and accessibility from anywhere.</p>
             </div>
             <div class="product-card">
-                <div class="product-icon">📊</div>
-                <h3>Business Analytics</h3>
-                <p>Data-driven insights and reporting tools to help you make informed decisions and optimize your business performance.</p>
-            </div>
+    <div class="product-icon">🎓</div>
+    <h3>Project Guidance</h3>
+    <p>We assist students in planning, developing, and completing their mini and major academic projects with expert guidance and hands-on support.</p>
+</div>
+
         </div>
     </section>
 
@@ -892,7 +895,7 @@
         <h2>Get In Touch</h2>
         <div class="contact-content">
             <div class="contact-form">
-                <form id="contactForm">
+                <form id="contactForm" method="POST" action="email/send_email.php">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required>
@@ -917,7 +920,7 @@
                     <div class="contact-icon">📍</div>
                     <div>
                         <h4>Address</h4>
-                        <p>123 Tech Street, Innovation District, Techville 12345</p>
+                        <p>Cherthala ,Alappuzha District  Kerala</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -941,6 +944,18 @@
                         <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
                     </div>
                 </div>
+                <div class="contact-item">
+    <div class="contact-icon">📄</div>
+    <div>
+        <h4>Submit Your Query</h4>
+        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank">
+            <button style="padding: 8px 16px; background-color: #5D3FD3; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Open Google Form
+            </button>
+        </a>
+    </div>
+</div>
+
             </div>
         </div>
     </section>
@@ -961,7 +976,6 @@
                 <h3>Services</h3>
                 <p><a href="#">Custom Software Development</a></p>
                 <p><a href="#">Web Application Development</a></p>
-                <p><a href="#">Mobile App Development</a></p>
                 <p><a href="#">Cloud Solutions</a></p>
                 <p><a href="#">UI/UX Design</a></p>
             </div>
@@ -970,12 +984,12 @@
                 <p><a href="#">Restaurant Management</a></p>
                 <p><a href="#">Student Management</a></p>
                 <p><a href="#">Gym Management</a></p>
-                <p><a href="#">Business Analytics</a></p>
+                <p><a href="#">Project Guidance</a></p>
                 <p><a href="#">CRM Solutions</a></p>
             </div>
             <div class="footer-section">
                 <h3>Contact Info</h3>
-                <p>📍 123 Tech Street, Innovation District</p>
+                <p>📍Cherthala ,Alappuzha District Kerala</p>
                 <p>📞 +1 (555) 123-4567</p>
                 <p>✉️ info@ZORQENTtechnologies.com</p>
                 <p>🌐 www.ZORQENTtechnologies.com</p>
@@ -1096,49 +1110,64 @@
         });
 
         // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const subject = formData.get('subject');
-            const message = formData.get('message');
-            
-            // Basic validation
-            if (!name || !email || !subject || !message) {
-                showNotification('Please fill in all fields.', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitButton = this.querySelector('.cta-button');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully.', 'success');
-                this.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 2000);
-        });
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('.cta-button');
+    const originalText = submitButton.textContent;
 
-        // Email validation
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
+    // Basic client-side validation
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    if (!name || !email || !subject || !message) {
+        showNotification('Please fill in all fields.', 'error');
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        showNotification('Please enter a valid email address.', 'error');
+        return;
+    }
+
+    // Send form via fetch
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    fetch('email/send_email.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            showNotification(data.message || 'Message sent successfully!', 'success');
+            form.reset();
+        } else {
+            showNotification(data.message || 'Failed to send message.', 'error');
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification('An error occurred while sending your message.', 'error');
+    })
+    .finally(() => {
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    });
+});
 
-        // Notification system
-        function showNotification(message, type = 'info') {
+function isValidEmail(email) {
+    // Basic email regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+  // Notification system
+        function showNotification(message, type) {
             // Remove existing notifications
             const existingNotifications = document.querySelectorAll('.notification');
             existingNotifications.forEach(notification => notification.remove());
