@@ -769,24 +769,10 @@
     <header class="header">
         <nav class="nav">
             <a href="#" class="logo">
-                <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50 50 Q75 25, 100 50 Q125 75, 150 50 Q175 25, 200 50" 
-                          stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
-                    <circle cx="60" cy="60" r="6" fill="currentColor"/>
-                    <circle cx="90" cy="40" r="6" fill="currentColor"/>
-                    <circle cx="110" cy="60" r="6" fill="currentColor"/>
-                    <circle cx="140" cy="40" r="6" fill="currentColor"/>
-                    <circle cx="170" cy="60" r="6" fill="currentColor"/>
-                    <path d="M30 100 Q55 75, 80 100 Q105 125, 130 100 Q155 75, 180 100" 
-                          stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
-                    <circle cx="40" cy="110" r="6" fill="currentColor"/>
-                    <circle cx="70" cy="90" r="6" fill="currentColor"/>
-                    <circle cx="100" cy="110" r="6" fill="currentColor"/>
-                    <circle cx="130" cy="90" r="6" fill="currentColor"/>
-                    <circle cx="160" cy="110" r="6" fill="currentColor"/>
-                </svg>
+                <img src="assets/logo.png" alt="ZORQENT Logo" class="logo-img" />
                 ZORQENT
             </a>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -811,7 +797,7 @@
     </section>
 
     <section id="about" class="section fade-in">
-        <h2>About ZORQENT Technologies</h2>
+        <h2>About Zorqent Technologies</h2>
         <div class="about-content">
             <div class="about-text">
                 <p>We are a leading software development company specializing in creating innovative, scalable, and user-friendly solutions for businesses of all sizes. With years of experience in the industry, our team of expert developers and designers work tirelessly to transform your ideas into powerful digital solutions.</p>
