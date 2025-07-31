@@ -948,7 +948,7 @@
     <div class="contact-icon">📄</div>
     <div>
         <h4>Submit Your Query</h4>
-        <a href="https://forms.gle/YOUR_FORM_ID" target="_blank">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScvG3ToS7d5821iRby3LAGNdox4g62g6YEyX0bpCNL7Tp7QNg/viewform" target="_blank">
             <button style="padding: 8px 16px; background-color: #5D3FD3; color: white; border: none; border-radius: 5px; cursor: pointer;">
                 Open Google Form
             </button>
