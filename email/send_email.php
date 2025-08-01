@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars($_POST['subject']);
     $message = nl2br(htmlspecialchars($_POST['message']));
 
-    $yourEmail = "ebinbenny777@gmail.com";
+    $yourEmail = "zorqent@gmail.com";
 
     // Send to admin
     $mail = new PHPMailer();
@@ -24,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail->SMTPSecure = "tls";
     $mail->Host       = "smtp.gmail.com";
     $mail->Port       = 587;
-    $mail->Username   = "ebinbenny777@gmail.com";
-    $mail->Password   = "bkcpfnapihelpakf";
+    $mail->Username   = "zorqent@gmail.com";
+    $mail->Password   = "uvimcgnfwxdresfv";
 
-    $mail->SetFrom("ebinbenny777@gmail.com", $name); // Gmail requires authenticated sender
+    $mail->SetFrom("zorqent@gmail.com", $name); // Gmail requires authenticated sender
     $mail->AddReplyTo($email, $name);
     $mail->AddAddress($yourEmail, "Website Contact");
     $mail->Subject = "New Contact Form: $subject";
@@ -55,10 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reply->SMTPSecure = "tls";
     $reply->Host       = "smtp.gmail.com";
     $reply->Port       = 587;
-    $reply->Username   = "ebinbenny777@gmail.com";
-    $reply->Password   = "bkcpfnapihelpakf";
-
-    $reply->SetFrom("ebinbenny777@gmail.com", "Zorqent");
+    $reply->Username   = "zorqent@gmail.com";
+    $reply->Password   = "uvimcgnfwxdresfv";
     $reply->AddReplyTo("support@zorqent.com", "Zorqent Support");
     $reply->AddAddress($email, $name);
     $reply->Subject = "We Received Your Message - Zorqent";
