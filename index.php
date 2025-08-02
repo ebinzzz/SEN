@@ -49,7 +49,7 @@
 
         /* Navigation */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: transparent;
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--medium-gray);
             transition: all 0.3s ease;
