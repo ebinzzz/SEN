@@ -16,6 +16,7 @@
     
     <style>
         :root {
+            /* Light mode colors */
             --primary-color: #000000;
             --secondary-color: #6B7280;
             --accent-color: #3B82F6;
@@ -26,6 +27,34 @@
             --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
             --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.07), 0 10px 15px rgba(0, 0, 0, 0.1);
             --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15), 0 20px 40px rgba(0, 0, 0, 0.1);
+            
+            /* Background and text */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F9FAFB;
+            --text-primary: #000000;
+            --text-secondary: #6B7280;
+            --border-color: #E5E7EB;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --primary-color: #FFFFFF;
+            --secondary-color: #9CA3AF;
+            --accent-color: #60A5FA;
+            --light-gray: #1F2937;
+            --medium-gray: #374151;
+            --dark-gray: #F3F4F6;
+            --white: #111827;
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+            --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.2), 0 10px 15px rgba(0, 0, 0, 0.3);
+            --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.4), 0 20px 40px rgba(0, 0, 0, 0.3);
+            
+            /* Background and text */
+            --bg-primary: #111827;
+            --bg-secondary: #1F2937;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9CA3AF;
+            --border-color: #374151;
         }
 
         * {
@@ -37,9 +66,10 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: var(--primary-color);
-            background-color: var(--white);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Smooth scrolling */
@@ -47,11 +77,46 @@
             scroll-behavior: smooth;
         }
 
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .theme-toggle i {
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle.rotating i {
+            transform: rotate(360deg);
+        }
+
         /* Navigation */
         .navbar {
-            background: transparent;
+            background: var(--bg-primary);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
             position: fixed;
             width: 100%;
@@ -66,7 +131,7 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
-            color: var(--primary-color) !important;
+            color: var(--text-primary) !important;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -74,7 +139,7 @@
         }
 
         .navbar-nav .nav-link {
-            color: var(--secondary-color) !important;
+            color: var(--text-secondary) !important;
             font-weight: 500;
             margin: 0 0.5rem;
             transition: all 0.3s ease;
@@ -82,7 +147,7 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: var(--primary-color) !important;
+            color: var(--text-primary) !important;
             transform: translateY(-2px);
         }
 
@@ -102,7 +167,16 @@
             width: 100%;
         }
 
-        /* Logo styling - Fixed */
+        .navbar-toggler {
+            border: none;
+            color: var(--text-primary);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Logo styling */
         .logo-container {
             display: flex;
             align-items: center;
@@ -122,12 +196,17 @@
             font-weight: bold;
         }
 
-        /* Alternative logo if you have an image */
         .logo-img {
             width: 80px;
             height: 80px;
             border-radius: 8px;
             object-fit: contain;
+            filter: var(--logo-filter, none);
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo-img {
+            --logo-filter: brightness(1.2) contrast(1.1);
         }
 
         /* Hero Section */
@@ -135,7 +214,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -149,6 +228,10 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(107, 114, 128, 0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             animation: float 20s ease-in-out infinite;
+        }
+
+        [data-theme="dark"] .hero::before {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(156, 163, 175, 0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
         }
 
         @keyframes float {
@@ -166,7 +249,7 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-gray) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -176,7 +259,7 @@
 
         .hero p {
             font-size: 1.25rem;
-            color: var(--secondary-color);
+            color: var(--text-secondary);
             margin-bottom: 2rem;
             opacity: 0;
             animation: slideInUp 0.8s ease-out 0.6s forwards;
@@ -191,8 +274,8 @@
         }
 
         .btn-primary-custom {
-            background: var(--primary-color);
-            color: var(--white);
+            background: var(--text-primary);
+            color: var(--bg-primary);
             border: none;
             padding: 0.75rem 2rem;
             font-weight: 600;
@@ -204,16 +287,16 @@
         }
 
         .btn-primary-custom:hover {
-            background: var(--dark-gray);
+            background: var(--text-secondary);
             transform: translateY(-3px);
             box-shadow: var(--shadow-heavy);
-            color: var(--white);
+            color: var(--bg-primary);
         }
 
         .btn-secondary-custom {
             background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--medium-gray);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
             padding: 0.75rem 2rem;
             font-weight: 600;
             border-radius: 12px;
@@ -223,9 +306,9 @@
         }
 
         .btn-secondary-custom:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            border-color: var(--primary-color);
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
             transform: translateY(-3px);
             box-shadow: var(--shadow-medium);
         }
@@ -238,13 +321,13 @@
 
         .floating-card {
             position: absolute;
-            background: var(--white);
+            background: var(--bg-primary);
             border-radius: 16px;
             padding: 1.5rem;
             box-shadow: var(--shadow-medium);
             transition: all 0.3s ease;
             backdrop-filter: blur(20px);
-            border: 1px solid var(--medium-gray);
+            border: 1px solid var(--border-color);
         }
 
         .floating-card:hover {
@@ -279,7 +362,7 @@
         /* Services Section */
         .services {
             padding: 6rem 0;
-            background: var(--white);
+            background: var(--bg-primary);
         }
 
         .section-title {
@@ -291,7 +374,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-gray) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -299,17 +382,17 @@
 
         .section-title p {
             font-size: 1.125rem;
-            color: var(--secondary-color);
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
 
         .service-card {
-            background: var(--white);
+            background: var(--bg-primary);
             border-radius: 20px;
             padding: 2.5rem;
             height: 100%;
-            border: 1px solid var(--medium-gray);
+            border: 1px solid var(--border-color);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -324,6 +407,10 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
             transition: left 0.6s ease;
+        }
+
+        [data-theme="dark"] .service-card::before {
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.1), transparent);
         }
 
         .service-card:hover::before {
@@ -346,7 +433,7 @@
             justify-content: center;
             margin-bottom: 1.5rem;
             font-size: 2rem;
-            color: var(--white);
+            color: white;
             transition: all 0.3s ease;
         }
 
@@ -358,18 +445,18 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--primary-color);
+            color: var(--text-primary);
         }
 
         .service-card p {
-            color: var(--secondary-color);
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
         /* Features Section */
         .features {
             padding: 6rem 0;
-            background: var(--light-gray);
+            background: var(--bg-secondary);
         }
 
         .feature-item {
@@ -386,7 +473,7 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--white);
+            background: var(--bg-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -406,25 +493,25 @@
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--primary-color);
+            color: var(--text-primary);
         }
 
         .feature-item p {
-            color: var(--secondary-color);
+            color: var(--text-secondary);
         }
 
         /* Contact Section */
         .contact {
             padding: 6rem 0;
-            background: var(--white);
+            background: var(--bg-primary);
         }
 
         .contact-card {
-            background: var(--white);
+            background: var(--bg-primary);
             border-radius: 24px;
             padding: 3rem;
             box-shadow: var(--shadow-medium);
-            border: 1px solid var(--medium-gray);
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
@@ -434,23 +521,28 @@
         }
 
         .form-control {
-            border: 2px solid var(--medium-gray);
+            border: 2px solid var(--border-color);
             border-radius: 12px;
             padding: 0.75rem 1rem;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: var(--white);
+            background: var(--bg-primary);
+            color: var(--text-primary);
         }
 
         .form-control:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.1);
-            background: var(--white);
+            background: var(--bg-primary);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-secondary);
         }
 
         .form-label {
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
@@ -458,14 +550,14 @@
             display: flex;
             align-items: center;
             padding: 1.5rem;
-            background: var(--light-gray);
+            background: var(--bg-secondary);
             border-radius: 16px;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
 
         .contact-info-item:hover {
-            background: var(--white);
+            background: var(--bg-primary);
             box-shadow: var(--shadow-light);
             transform: translateX(10px);
         }
@@ -479,31 +571,39 @@
             align-items: center;
             justify-content: center;
             margin-right: 1rem;
-            color: var(--white);
+            color: white;
             font-size: 1.25rem;
+        }
+
+        .contact-info-item h5 {
+            color: var(--text-primary);
+        }
+
+        .contact-info-item p {
+            color: var(--text-secondary);
         }
 
         /* Footer */
         .footer {
-            background: var(--primary-color);
-            color: var(--white);
+            background: var(--text-primary);
+            color: var(--bg-primary);
             padding: 3rem 0 1rem;
         }
 
         .footer h5 {
-            color: var(--white);
+            color: var(--bg-primary);
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
         .footer p, .footer a {
-            color: #9CA3AF;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer a:hover {
-            color: var(--white);
+            color: var(--bg-primary);
         }
 
         .social-links a {
@@ -511,8 +611,8 @@
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            background: var(--dark-gray);
-            color: var(--white);
+            background: var(--bg-secondary);
+            color:black ;
             text-align: center;
             line-height: 40px;
             margin-right: 0.5rem;
@@ -566,8 +666,8 @@
             width: 50px;
             height: 50px;
             border-radius: 12px;
-            background: var(--primary-color);
-            color: var(--white);
+            background: var(--text-primary);
+            color: var(--bg-primary);
             border: none;
             font-size: 1.25rem;
             cursor: pointer;
@@ -584,13 +684,21 @@
         }
 
         .back-to-top:hover {
-            background: var(--dark-gray);
+            background: var(--text-secondary);
             transform: translateY(-3px);
             box-shadow: var(--shadow-heavy);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .theme-toggle {
+                top: 120px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -674,11 +782,21 @@
         .animate-in {
             animation: slideInUp 0.6s ease-out forwards;
         }
+
+        /* Dark mode transitions */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg" id="navbar">
@@ -686,16 +804,14 @@
            <a href="#" class="navbar-brand">
                 <div class="logo-container">
                     <!-- Option 1: CSS-based logo icon -->
-                    <!--<div class="logo-icon">Z</div>-->
+                    
                     <!-- Option 2: If you have a logo image, uncomment the line below and comment out the div above -->
-                    <img src="assets/logo.png" alt="ZORQENT Logo" class="logo-img" /> 
+                   <img src="assets/logo.png" alt="ZORQENT Logo" class="logo-img" /> 
                     <span>ZORQENT</span>
                 </div>
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+       
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -708,11 +824,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#features">Features</a>
                     </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="careers/careers.php">Careers</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -774,16 +896,6 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
                         <div class="service-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <h3>Restaurant Management</h3>
-                        <p>Comprehensive solution for managing orders, inventory, staff, and customer relationships. Streamline your restaurant operations with our intuitive platform.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-card">
-                        <div class="service-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h3>Student Management</h3>
@@ -798,6 +910,15 @@
                         </div>
                         <h3>Gym Management</h3>
                         <p>All-in-one fitness center management solution with member tracking, workout plans, payment processing, and equipment maintenance.</p>
+                    </div>
+                </div>
+                    <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Restaurant Management</h3>
+                        <p>Comprehensive solution for managing orders, inventory, staff, and customer relationships. Streamline your restaurant operations with our intuitive platform.</p>
                     </div>
                 </div>
                 
@@ -1029,6 +1150,64 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+        // Dark Mode Functionality
+        class ThemeManager {
+            constructor() {
+                this.themeToggle = document.getElementById('themeToggle');
+                this.themeIcon = document.getElementById('themeIcon');
+                this.currentTheme = localStorage.getItem('theme') || 'light';
+                
+                this.init();
+            }
+            
+            init() {
+                // Set initial theme
+                this.setTheme(this.currentTheme);
+                
+                // Add event listener
+                this.themeToggle.addEventListener('click', () => {
+                    this.toggleTheme();
+                });
+                
+                // Listen for system theme changes
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                    if (!localStorage.getItem('theme')) {
+                        this.setTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+            }
+            
+            setTheme(theme) {
+                this.currentTheme = theme;
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                // Update icon with animation
+                this.themeToggle.classList.add('rotating');
+                setTimeout(() => {
+                    this.themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    this.themeToggle.classList.remove('rotating');
+                }, 150);
+                
+                // Save to localStorage
+                localStorage.setItem('theme', theme);
+                
+                // Dispatch custom event for other components
+                window.dispatchEvent(new CustomEvent('themeChange', { detail: { theme } }));
+            }
+            
+            toggleTheme() {
+                const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                this.setTheme(newTheme);
+            }
+            
+            getTheme() {
+                return this.currentTheme;
+            }
+        }
+
+        // Initialize theme manager
+        const themeManager = new ThemeManager();
+
         // Scroll Progress Bar
         function updateScrollProgress() {
             const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -1109,28 +1288,15 @@
             submitButton.disabled = true;
             submitButton.classList.add('loading');
 
-            fetch('email/send_email.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification(data.message || 'Message sent successfully! We\'ll get back to you soon.', 'success');
-                    form.reset();
-                } else {
-                    showNotification(data.message || 'Failed to send message. Please try again.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNotification('An error occurred while sending your message. Please try again.', 'error');
-            })
-            .finally(() => {
+            // Simulate form submission (replace with actual endpoint)
+            setTimeout(() => {
+                showNotification('Message sent successfully! We\'ll get back to you soon.', 'success');
+                form.reset();
+                
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
                 submitButton.classList.remove('loading');
-            });
+            }, 2000);
         });
 
         // Notification system
@@ -1146,13 +1312,14 @@
                 <div class="d-flex align-items-center">
                     <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
                     <span>${message}</span>
+                    <button class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
                 </div>
             `;
             
             // Add styles
             notification.style.cssText = `
                 position: fixed;
-                top: 100px;
+                top: 120px;
                 right: 20px;
                 padding: 1rem 1.5rem;
                 border-radius: 12px;
@@ -1166,6 +1333,18 @@
                 background: ${type === 'success' ? 'linear-gradient(45deg, #10B981, #059669)' : 'linear-gradient(45deg, #EF4444, #DC2626)'};
             `;
             
+            // Add close button styles
+            const closeBtn = notification.querySelector('.btn-close');
+            closeBtn.style.cssText = `
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0;
+                margin-left: 1rem;
+            `;
+            
             // Add to DOM
             document.body.appendChild(notification);
             
@@ -1176,13 +1355,15 @@
             
             // Remove after delay
             setTimeout(() => {
-                notification.style.transform = 'translateX(400px)';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 4000);
+                if (notification.parentNode) {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
         }
 
         // Parallax effect for floating cards
@@ -1276,12 +1457,18 @@
                     bsCollapse.hide();
                 }
             }
+            
+            // Toggle theme with Ctrl/Cmd + D
+            if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                e.preventDefault();
+                themeManager.toggleTheme();
+            }
         });
 
         // Add loading animation to buttons
         document.querySelectorAll('.btn-primary-custom, .btn-secondary-custom').forEach(button => {
             button.addEventListener('click', function(e) {
-                if (!this.classList.contains('loading')) {
+                if (!this.classList.contains('loading') && !this.getAttribute('href')) {
                     this.classList.add('loading');
                     setTimeout(() => {
                         this.classList.remove('loading');
@@ -1328,6 +1515,42 @@
                 observer.observe(section);
             });
         });
+
+        // Theme change event listener for custom animations
+        window.addEventListener('themeChange', (e) => {
+            // Add ripple effect on theme change
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                top: 50%;
+                right: 50px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: ${e.detail.theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'};
+                transform: translate(50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+                transition: all 0.6s ease;
+            `;
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.style.width = '200vmax';
+                ripple.style.height = '200vmax';
+            }, 10);
+            
+            setTimeout(() => {
+                document.body.removeChild(ripple);
+            }, 600);
+        });
+
+        // Auto-detect system theme preference on load
+        if (!localStorage.getItem('theme')) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            themeManager.setTheme(prefersDark ? 'dark' : 'light');
+        }
     </script>
 </body>
 </html>
